@@ -15,6 +15,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 		[SerializeField] float m_MoveSpeedMultiplier = 1f;
 		[SerializeField] float m_AnimSpeedMultiplier = 1f;
 		[SerializeField] float m_GroundCheckDistance = 0.1f;
+		[SerializeField] float m_SwimmingHeight = 60.0f;
 
 		Rigidbody m_Rigidbody;
 		Animator m_Animator;
@@ -174,7 +175,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				m_Animator.applyRootMotion = false;
 				m_GroundCheckDistance = 0.1f;
 			}
-			if (!jump && !crouch && swimming && !grounded && m_Rigidbody.position.y <= 60 && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
+			if (!jump && !crouch && swimming && !grounded && m_Rigidbody.position.y <= m_SwimmingHeight && m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
 			{
 				m_Animator.SetTrigger("Swimming");
 			}
